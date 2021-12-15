@@ -34,7 +34,12 @@ def parse_cmdline(args):
         action='version',
         version=__version__
     )
-
+    parser.add_argument(
+        '-d', '--debug',
+        action="debug",
+        default=True,
+        help="add additional debug info"
+    )
     # <command> isn't actually optional; but if it's marked as required,
     # there's no way to get help for subcommands. So; treat <command>
     # as optional, handle the case where <command> isn't provided

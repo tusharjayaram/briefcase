@@ -58,7 +58,10 @@ class Subprocess:
             print(">>> {cmdline}".format(
                 cmdline=' '.join(shlex.quote(str(arg)) for arg in args)
             ))
-
+        if self.command.debug:
+            print(">>> {cmdline}".format(
+                cmdline=' '.join(shlex.quote(str(arg)) for arg in args)
+            ))
         return self._subprocess.run(
             [
                 str(arg) for arg in args

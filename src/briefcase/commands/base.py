@@ -386,7 +386,9 @@ class BaseCommand(ABC):
         # Extract the base default options onto the command
         self.input.enabled = options.pop('input_enabled')
         self.verbosity = options.pop('verbosity')
-
+        # Setting self.command.debug to true to use later in subprocess.py and logging.py
+        if 'debug' in options:
+            self.command.debug = True
         return options
 
     def clone_options(self, command):

@@ -72,7 +72,18 @@ def test_show_output_formats_only():
         'positional arguments:\n'
     )
 
-
+def test_debug_only():
+    "`` briefcase -d`` turns on debug mode"
+    with pytest.raises(NoCommandError) as excinfo:
+        parse_cmdline('-d'.split())
+    # because no outputs are rendered for this command (similar to the -f flag, the default output message will render.)
+    assert excinfo.value.msg.startwith(
+        'usage: briefcase [-h] <command> [<platform>] [<format>] ...\n'
+        '\n'
+        'Package Python code for distribution.\n'
+        '\n'
+        'positional arguments:\n'
+    )
 def test_unknown_command():
     "``briefcase foobar`` fails as an invalid command"
     with pytest.raises(SystemExit) as excinfo:
